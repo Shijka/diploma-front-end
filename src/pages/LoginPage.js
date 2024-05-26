@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button, Grid, Box, Typography, Paper, Checkbox, FormControlLabel, TextField, CssBaseline, IconButton, InputAdornment, CircularProgress, Backdrop } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import bgpic from "../assets/designlogin.jpg"
 import { LightPurpleButton } from '../components/buttonStyles';
 import styled from 'styled-components';
 import { loginUser } from '../redux/userRelated/userHandle';
 import Popup from '../components/Popup';
+import Logo from "../assets/logo.png";
 
 const defaultTheme = createTheme();
 
@@ -77,20 +77,20 @@ const LoginPage = ({ role }) => {
         const password = "zxc"
 
         if (role === "Admin") {
-            const email = "yogendra@12"
+            const email = "Цахим хаяг"
             const fields = { email, password }
             setGuestLoader(true)
             dispatch(loginUser(fields, role))
         }
         else if (role === "Student") {
             const rollNum = "1"
-            const studentName = "Dipesh Awasthi"
+            const studentName = "Оюутны нэр"
             const fields = { rollNum, studentName, password }
             setGuestLoader(true)
             dispatch(loginUser(fields, role))
         }
         else if (role === "Teacher") {
-            const email = "tony@12"
+            const email = "Цахим хаяг"
             const fields = { email, password }
             setGuestLoader(true)
             dispatch(loginUser(fields, role))
@@ -136,10 +136,10 @@ const LoginPage = ({ role }) => {
                         }}
                     >
                         <Typography variant="h4" sx={{ mb: 2, color: "#2c2143" }}>
-                            {role} Login
+                            {role} Нэвтрэх
                         </Typography>
                         <Typography variant="h7">
-                            Welcome back! Please enter your details
+                            Тавтай морил! Мэдээллээ оруулна уу
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
                             {role === "Student" ? (
@@ -149,7 +149,7 @@ const LoginPage = ({ role }) => {
                                         required
                                         fullWidth
                                         id="rollNumber"
-                                        label="Enter your Roll Number"
+                                        label="Оюутны код "
                                         name="rollNumber"
                                         autoComplete="off"
                                         type="number"
@@ -163,7 +163,7 @@ const LoginPage = ({ role }) => {
                                         required
                                         fullWidth
                                         id="studentName"
-                                        label="Enter your name"
+                                        label="Оюутны нэр"
                                         name="studentName"
                                         autoComplete="name"
                                         autoFocus
@@ -178,7 +178,7 @@ const LoginPage = ({ role }) => {
                                     required
                                     fullWidth
                                     id="email"
-                                    label="Enter your email"
+                                    label="Цахим хаяг"
                                     name="email"
                                     autoComplete="email"
                                     autoFocus
@@ -192,7 +192,7 @@ const LoginPage = ({ role }) => {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label="Нууц үг"
                                 type={toggle ? 'text' : 'password'}
                                 id="password"
                                 autoComplete="current-password"
@@ -216,10 +216,10 @@ const LoginPage = ({ role }) => {
                             <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
                                 <FormControlLabel
                                     control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
+                                    label="Намайг сана"
                                 />
                                 <StyledLink href="#">
-                                    Forgot password?
+                                    Нууц үгээ мартсан уу?
                                 </StyledLink>
                             </Grid>
                             <LightPurpleButton
@@ -230,24 +230,16 @@ const LoginPage = ({ role }) => {
                             >
                                 {loader ?
                                     <CircularProgress size={24} color="inherit" />
-                                    : "Login"}
+                                    : "Нэвтрэх"}
                             </LightPurpleButton>
-                            <Button
-                                fullWidth
-                                onClick={guestModeHandler}
-                                variant="outlined"
-                                sx={{ mt: 2, mb: 3, color: "#7f56da", borderColor: "#7f56da" }}
-                            >
-                                Login as Guest
-                            </Button>
                             {role === "Admin" &&
                                 <Grid container>
                                     <Grid>
-                                        Don't have an account?
+                                        Админ эрх нээх үү?
                                     </Grid>
-                                    <Grid item sx={{ ml: 2 }}>
+                                    <Grid item sx={{ ml: 1 }}>
                                         <StyledLink to="/Adminregister">
-                                            Sign up
+                                            Бүртгүүлэх
                                         </StyledLink>
                                     </Grid>
                                 </Grid>
@@ -258,14 +250,14 @@ const LoginPage = ({ role }) => {
                 <Grid
                     item
                     xs={false}
-                    sm={4}
-                    md={7}
+                    sm={12}
+                    md={6}
                     sx={{
-                        backgroundImage: `url(${bgpic})`,
+                        backgroundImage: `url(${Logo})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundColor: (t) =>
-                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-                        backgroundSize: 'cover',
+                            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[100],
+                        backgroundSize: '80%',
                         backgroundPosition: 'center',
                     }}
                 />
@@ -275,7 +267,7 @@ const LoginPage = ({ role }) => {
                 open={guestLoader}
             >
                 <CircularProgress color="primary" />
-                Please Wait
+                Хүлээгээрэй
             </Backdrop>
             <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
         </ThemeProvider>
@@ -285,7 +277,7 @@ const LoginPage = ({ role }) => {
 export default LoginPage
 
 const StyledLink = styled(Link)`
-  margin-top: 9px;
+  margin-top: 10px;
   text-decoration: none;
-  color: #7f56da;
+  color: #000000;
 `;

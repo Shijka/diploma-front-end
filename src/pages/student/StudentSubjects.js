@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSubjectList } from '../../redux/sclassRelated/sclassHandle';
-import { BottomNavigation, BottomNavigationAction, Container, Paper, Table, TableBody, TableHead, Typography } from '@mui/material';
+import { BottomNavigation, BottomNavigationAction, Container, Paper, Table, TableBody, TableHead, Typography, Button } from '@mui/material';
 import { getUserDetails } from '../../redux/userRelated/userHandle';
-import CustomBarChart from '../../components/CustomBarChart'
+import CustomBarChart from '../../components/CustomBarChart';
 
 import InsertChartIcon from '@mui/icons-material/InsertChart';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import TableChartOutlinedIcon from '@mui/icons-material/TableChartOutlined';
 import { StyledTableCell, StyledTableRow } from '../../components/styles';
+import axios from 'axios';
 
 const StudentSubjects = () => {
 
@@ -19,19 +20,20 @@ const StudentSubjects = () => {
 
     useEffect(() => {
         dispatch(getUserDetails(currentUser._id, "Student"));
-    }, [dispatch, currentUser._id])
+    }, [dispatch, currentUser._id]);
 
-    if (response) { console.log(response) }
-    else if (error) { console.log(error) }
+    if (response) { console.log(response); }
+    else if (error) { console.log(error); }
 
     const [subjectMarks, setSubjectMarks] = useState([]);
     const [selectedSection, setSelectedSection] = useState('table');
+    const [selectedFile, setSelectedFile] = useState(null);
 
     useEffect(() => {
         if (userDetails) {
             setSubjectMarks(userDetails.examResult || []);
         }
-    }, [userDetails])
+    }, [userDetails]);
 
     useEffect(() => {
         if (subjectMarks === []) {
@@ -43,17 +45,61 @@ const StudentSubjects = () => {
         setSelectedSection(newSection);
     };
 
+    const handleFileChange = (event) => {
+        setSelectedFile(event.target.files[0]);
+    };
+
+    const handleFileUpload = async () => {
+        if (selectedFile) {
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+
+            // Add your file upload logic here, for example, dispatching a redux action
+            // dispatch(uploadFile(formData));
+
+            try {
+                const result = await axios.get(`${process.env.REACT_APP_BASE_URL}/Student/subject/${currentUser._id}`);
+                if (result.data) {
+                    // dispatch(doneSuccess(result.data));
+                }
+            } catch (error) {
+                console.error(error)
+            }
+
+            console.log('File uploaded:', selectedFile);
+        }
+    };
+
+    const renderFileUploadSection = () => {
+        return (
+            <Container>
+                <input
+                    type="file"
+                    onChange={handleFileChange}
+                />
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleFileUpload}
+                    disabled={!selectedFile}
+                >
+                    Upload
+                </Button>
+            </Container>
+        );
+    };
+
     const renderTableSection = () => {
         return (
             <>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Subject Marks
+                    Үзлэг
                 </Typography>
                 <Table>
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell>Subject</StyledTableCell>
-                            <StyledTableCell>Marks</StyledTableCell>
+                            <StyledTableCell>Үзлэг</StyledTableCell>
+                            <StyledTableCell>Оноо</StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <TableBody>
@@ -82,13 +128,13 @@ const StudentSubjects = () => {
         return (
             <Container>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Class Details
+                    Ангийн дэлгэрэнгүй мэдээлэл
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    You are currently in Class {sclassDetails && sclassDetails.sclassName}
+                    Ангийн нэр {sclassDetails && sclassDetails.sclassName}
                 </Typography>
                 <Typography variant="h6" gutterBottom>
-                    And these are the subjects:
+                    Мөн эдгээр нь үзлэгүүд юм:
                 </Typography>
                 {subjectsList &&
                     subjectsList.map((subject, index) => (
@@ -109,28 +155,27 @@ const StudentSubjects = () => {
             ) : (
                 <div>
                     {subjectMarks && Array.isArray(subjectMarks) && subjectMarks.length > 0
-                        ?
-                        (<>
+                        ? (<>
                             {selectedSection === 'table' && renderTableSection()}
                             {selectedSection === 'chart' && renderChartSection()}
-
+                            {renderFileUploadSection()}
                             <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                                 <BottomNavigation value={selectedSection} onChange={handleSectionChange} showLabels>
                                     <BottomNavigationAction
-                                        label="Table"
+                                        label="Хүснэгт"
                                         value="table"
                                         icon={selectedSection === 'table' ? <TableChartIcon /> : <TableChartOutlinedIcon />}
                                     />
                                     <BottomNavigationAction
-                                        label="Chart"
+                                        label="Диаграм"
                                         value="chart"
                                         icon={selectedSection === 'chart' ? <InsertChartIcon /> : <InsertChartOutlinedIcon />}
                                     />
                                 </BottomNavigation>
                             </Paper>
                         </>)
-                        :
-                        (<>
+                        : (<>
+                            {renderFileUploadSection()}
                             {renderClassDetailsSection()}
                         </>)
                     }

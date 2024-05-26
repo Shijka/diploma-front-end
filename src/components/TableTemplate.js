@@ -21,7 +21,7 @@ const TableTemplate = ({ buttonHaver: ButtonHaver, columns, rows }) => {
                                 </StyledTableCell>
                             ))}
                             <StyledTableCell align="center">
-                                Actions
+                                Үйлдлүүд
                             </StyledTableCell>
                         </StyledTableRow>
                     </TableHead>

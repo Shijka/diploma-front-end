@@ -26,8 +26,8 @@ const TeacherClassDetails = () => {
     }
 
     const studentColumns = [
-        { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'rollNum', label: 'Roll Number', minWidth: 100 },
+        { id: 'name', label: 'Нэр', minWidth: 170 },
+        { id: 'rollNum', label: 'Оюутны код', minWidth: 100 },
     ]
 
     const studentRows = sclassStudents.map((student) => {
@@ -85,7 +85,7 @@ const TeacherClassDetails = () => {
                         navigate("/Teacher/class/student/" + row.id)
                     }
                 >
-                    View
+                    Харах
                 </BlueButton>
                 <React.Fragment>
                     <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
@@ -94,7 +94,7 @@ const TeacherClassDetails = () => {
                             size="small"
                             aria-controls={open ? 'split-button-menu' : undefined}
                             aria-expanded={open ? 'true' : undefined}
-                            aria-label="select merge strategy"
+                            aria-label="Нэгтгэх стратегийг сонгоно уу"
                             aria-haspopup="menu"
                             onClick={handleToggle}
                         >
@@ -150,18 +150,18 @@ const TeacherClassDetails = () => {
             ) : (
                 <>
                     <Typography variant="h4" align="center" gutterBottom>
-                        Class Details
+                        Ангийн дэлгэрэнгүй мэдээлэл
                     </Typography>
                     {getresponse ? (
                         <>
                             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                                No Students Found
+                                Оюутан олдсонгүй
                             </Box>
                         </>
                     ) : (
                         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                             <Typography variant="h5" gutterBottom>
-                                Students List:
+                                Оюутны жагсаалт:
                             </Typography>
 
                             {Array.isArray(sclassStudents) && sclassStudents.length > 0 &&

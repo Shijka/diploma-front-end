@@ -81,7 +81,7 @@ const StudentAttendance = ({ situation }) => {
         else if (statestatus === "added") {
             setLoader(false)
             setShowPopup(true)
-            setMessage("Done Successfully")
+            setMessage("Амжилттай нэмлээ")
         }
     }, [response, statestatus, error])
 
@@ -112,11 +112,11 @@ const StudentAttendance = ({ situation }) => {
                         >
                             <Stack spacing={1} sx={{ mb: 3 }}>
                                 <Typography variant="h4">
-                                    Student Name: {userDetails.name}
+                                    Оюутны нэр: {userDetails.name}
                                 </Typography>
                                 {currentUser.teachSubject &&
                                     <Typography variant="h4">
-                                        Subject Name: {currentUser.teachSubject?.subName}
+                                        Үзлэгийн нэр: {currentUser.teachSubject?.subName}
                                     </Typography>
                                 }
                             </Stack>
@@ -125,12 +125,12 @@ const StudentAttendance = ({ situation }) => {
                                     {
                                         situation === "Student" &&
                                         <FormControl fullWidth>
-                                            <InputLabel id="demo-simple-select-label">Select Subject</InputLabel>
+                                            <InputLabel id="demo-simple-select-label">Үзлэгийг сонгоно уу</InputLabel>
                                             <Select
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
                                                 value={subjectName}
-                                                label="Choose an option"
+                                                label="Сонголт хийнэ үү"
                                                 onChange={changeHandler} required
                                             >
                                                 {subjectsList ?
@@ -140,30 +140,30 @@ const StudentAttendance = ({ situation }) => {
                                                         </MenuItem>
                                                     ))
                                                     :
-                                                    <MenuItem value="Select Subject">
-                                                        Add Subjects For Attendance
+                                                    <MenuItem value="Үзлэг сонгоно уу">
+                                                        Үзлэг болон Ирц нэмэх
                                                     </MenuItem>
                                                 }
                                             </Select>
                                         </FormControl>
                                     }
                                     <FormControl fullWidth>
-                                        <InputLabel id="demo-simple-select-label">Attendance Status</InputLabel>
+                                        <InputLabel id="demo-simple-select-label">Ирцийн байдал</InputLabel>
                                         <Select
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
                                             value={status}
-                                            label="Choose an option"
+                                            label="Сонголт хийнэ үү"
                                             onChange={(event) => setStatus(event.target.value)}
                                             required
                                         >
-                                            <MenuItem value="Present">Present</MenuItem>
-                                            <MenuItem value="Absent">Absent</MenuItem>
+                                            <MenuItem value="Present">Ирсэн</MenuItem>
+                                            <MenuItem value="Absent">Ирээгүй</MenuItem>
                                         </Select>
                                     </FormControl>
                                     <FormControl>
                                         <TextField
-                                            label="Select Date"
+                                            label="Он сар сонгоно уу"
                                             type="date"
                                             value={date}
                                             onChange={(event) => setDate(event.target.value)} required

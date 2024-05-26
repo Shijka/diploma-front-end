@@ -66,7 +66,7 @@ const AccountMenu = () => {
                         <Logout fontSize="small" />
                     </ListItemIcon>
                     <Link to="/logout">
-                        Logout
+                        Гарах
                     </Link>
                 </MenuItem>
             </Menu>

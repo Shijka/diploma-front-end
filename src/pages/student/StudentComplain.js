@@ -38,12 +38,12 @@ const StudentComplain = () => {
         if (status === "added") {
             setLoader(false)
             setShowPopup(true)
-            setMessage("Done Successfully")
+            setMessage("Амжилттай нэмлээ")
         }
         else if (error) {
             setLoader(false)
             setShowPopup(true)
-            setMessage("Network Error")
+            setMessage("Сүлжээний алдаа")
         }
     }, [status, error])
 
@@ -67,13 +67,13 @@ const StudentComplain = () => {
                 >
                     <div>
                         <Stack spacing={1} sx={{ mb: 3 }}>
-                            <Typography variant="h4">Complain</Typography>
+                            <Typography variant="h4">Гомдол</Typography>
                         </Stack>
                         <form onSubmit={submitHandler}>
                             <Stack spacing={3}>
                                 <TextField
                                     fullWidth
-                                    label="Select Date"
+                                    label="Өдрөө сонго"
                                     type="date"
                                     value={date}
                                     onChange={(event) => setDate(event.target.value)} required
@@ -83,7 +83,7 @@ const StudentComplain = () => {
                                 />
                                 <TextField
                                     fullWidth
-                                    label="Write your complain"
+                                    label="Гомдлоо бичээрэй"
                                     variant="outlined"
                                     value={complaint}
                                     onChange={(event) => {

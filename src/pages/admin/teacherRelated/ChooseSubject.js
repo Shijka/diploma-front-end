@@ -40,7 +40,7 @@ const ChooseSubject = ({ situation }) => {
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
                 <PurpleButton variant="contained"
                     onClick={() => navigate("/Admin/addsubject/" + classID)}>
-                    Add Subjects
+                    Үзлэг нэмэх
                 </PurpleButton>
             </Box>
         </div>;
@@ -57,7 +57,7 @@ const ChooseSubject = ({ situation }) => {
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
             <Typography variant="h6" gutterBottom component="div">
-                Choose a subject
+                Үзлэг сонгох
             </Typography>
             <>
                 <TableContainer>
@@ -65,9 +65,9 @@ const ChooseSubject = ({ situation }) => {
                         <TableHead>
                             <StyledTableRow>
                                 <StyledTableCell></StyledTableCell>
-                                <StyledTableCell align="center">Subject Name</StyledTableCell>
-                                <StyledTableCell align="center">Subject Code</StyledTableCell>
-                                <StyledTableCell align="center">Actions</StyledTableCell>
+                                <StyledTableCell align="center">Үзлэгийн нэр</StyledTableCell>
+                                <StyledTableCell align="center">Үзлэгийн код</StyledTableCell>
+                                <StyledTableCell align="center">Үйлдлүүд</StyledTableCell>
                             </StyledTableRow>
                         </TableHead>
                         <TableBody>
@@ -82,7 +82,7 @@ const ChooseSubject = ({ situation }) => {
                                         {situation === "Norm" ?
                                             <GreenButton variant="contained"
                                                 onClick={() => navigate("/Admin/teachers/addteacher/" + subject._id)}>
-                                                Choose
+                                                Сонгох
                                             </GreenButton>
                                             :
                                             <GreenButton variant="contained" disabled={loader}

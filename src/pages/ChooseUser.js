@@ -13,6 +13,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/userRelated/userHandle';
 import Popup from '../components/Popup';
+import Nmit from "../assets/nmit.png"
 
 const ChooseUser = ({ visitor }) => {
   const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const ChooseUser = ({ visitor }) => {
   const navigateHandler = (user) => {
     if (user === "Admin") {
       if (visitor === "guest") {
-        const email = "yogendra@12"
+        const email = "Цахим хаяг"
         const fields = { email, password }
         setLoader(true)
         dispatch(loginUser(fields, user))
@@ -40,8 +41,8 @@ const ChooseUser = ({ visitor }) => {
 
     else if (user === "Student") {
       if (visitor === "guest") {
-        const rollNum = "1"
-        const studentName = "Dipesh Awasthi"
+        const rollNum = "Оюутны код"
+        const studentName = "Нэр"
         const fields = { rollNum, studentName, password }
         setLoader(true)
         dispatch(loginUser(fields, user))
@@ -53,7 +54,7 @@ const ChooseUser = ({ visitor }) => {
 
     else if (user === "Teacher") {
       if (visitor === "guest") {
-        const email = "tony@12"
+        const email = "Цахим хаяг"
         const fields = { email, password }
         setLoader(true)
         dispatch(loginUser(fields, user))
@@ -93,9 +94,9 @@ const ChooseUser = ({ visitor }) => {
                   <AccountCircle fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Admin
+                  Админ
                 </StyledTypography>
-                Login as an administrator to access the dashboard to manage app data.
+                Програмын өгөгдлийг удирдахын тулд администратороор нэвтэрнэ үү.
               </StyledPaper>
             </div>
           </Grid>
@@ -106,9 +107,9 @@ const ChooseUser = ({ visitor }) => {
                   <School fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Student
+                  Оюутан
                 </StyledTypography>
-                Login as a student to explore course materials and assignments.
+                Дипломын баримт бичгийг судлахын тулд оюутны хувиар нэвтэрнэ үү.
               </div>
             </StyledPaper>
           </Grid>
@@ -119,9 +120,9 @@ const ChooseUser = ({ visitor }) => {
                   <Group fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Teacher
+                  Багш
                 </StyledTypography>
-                Login as a teacher to create courses, assignments, and track student progress.
+                  Хичээл, даалгавар үүсгэх, оюутны ахиц дэвшлийг хянахын тулд багшаар нэвтэрнэ үү.
               </div>
             </StyledPaper>
           </Grid>
@@ -132,7 +133,7 @@ const ChooseUser = ({ visitor }) => {
         open={loader}
       >
         <CircularProgress color="inherit" />
-        Please Wait
+          Хүлээгээрэй
       </Backdrop>
       <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
     </StyledContainer>
@@ -142,7 +143,9 @@ const ChooseUser = ({ visitor }) => {
 export default ChooseUser;
 
 const StyledContainer = styled.div`
-  background: linear-gradient(to bottom, #411d70, #19118b);
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 33%, rgba(0, 0, 0, 0) 94%), url(${Nmit});
+  background-size: cover;
+  background-position: center;
   height: 120vh;
   display: flex;
   justify-content: center;
@@ -152,12 +155,12 @@ const StyledContainer = styled.div`
 const StyledPaper = styled(Paper)`
   padding: 20px;
   text-align: center;
-  background-color: #1f1f38;
+  background-color: #8b0000;
   color:rgba(255, 255, 255, 0.6);
   cursor:pointer;
 
   &:hover {
-    background-color: #2c2c6c;
+    background-color: #8b0000;
     color:white;
   }
 `;

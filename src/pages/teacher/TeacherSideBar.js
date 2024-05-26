@@ -7,6 +7,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import AnnouncementOutlinedIcon from '@mui/icons-material/AnnouncementOutlined';
 import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
+import SearchIcon from "@mui/icons-material/Search";
 import { useSelector } from 'react-redux';
 
 const TeacherSideBar = () => {
@@ -21,7 +22,13 @@ const TeacherSideBar = () => {
                     <ListItemIcon>
                         <HomeIcon color={location.pathname === ("/" || "/Teacher/dashboard") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Home" />
+                    <ListItemText primary="Нүүр" />
+                </ListItemButton>
+                <ListItemButton component={Link} to="/Teacher/search">
+                    <ListItemIcon>
+                        <SearchIcon color={location.pathname.startsWith("/Teacher/search") ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Диплом"/>
                 </ListItemButton>
                 <ListItemButton component={Link} to="/Teacher/class">
                     <ListItemIcon>
@@ -45,13 +52,13 @@ const TeacherSideBar = () => {
                     <ListItemIcon>
                         <AccountCircleOutlinedIcon color={location.pathname.startsWith("/Teacher/profile") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Profile" />
+                    <ListItemText primary="Профайл" />
                 </ListItemButton>
                 <ListItemButton component={Link} to="/logout">
                     <ListItemIcon>
                         <ExitToAppIcon color={location.pathname.startsWith("/logout") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Logout" />
+                    <ListItemText primary="Гарах" />
                 </ListItemButton>
             </React.Fragment>
         </>

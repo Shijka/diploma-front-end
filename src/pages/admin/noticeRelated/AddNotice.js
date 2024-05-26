@@ -45,7 +45,7 @@ const AddNotice = () => {
     <>
       <div className="register">
         <form className="registerForm" onSubmit={submitHandler}>
-          <span className="registerTitle">Add Notice</span>
+          <span className="registerTitle">Мэдэгдэл нэмэх</span>
           <label>Title</label>
           <input className="registerInput" type="text" placeholder="Enter notice title..."
             value={title}

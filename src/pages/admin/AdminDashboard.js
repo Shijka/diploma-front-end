@@ -27,6 +27,8 @@ import ViewStudent from './studentRelated/ViewStudent';
 import AddNotice from './noticeRelated/AddNotice';
 import ShowNotices from './noticeRelated/ShowNotices';
 
+import Search from './diploma/Search'
+
 import ShowSubjects from './subjectRelated/ShowSubjects';
 import SubjectForm from './subjectRelated/SubjectForm';
 import ViewSubject from './subjectRelated/ViewSubject';
@@ -73,7 +75,7 @@ const AdminDashboard = () => {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Admin Dashboard
+                            Админ
                         </Typography>
                         <AccountMenu />
                     </Toolbar>
@@ -101,6 +103,9 @@ const AdminDashboard = () => {
                         {/* Notice */}
                         <Route path="/Admin/addnotice" element={<AddNotice />} />
                         <Route path="/Admin/notices" element={<ShowNotices />} />
+
+                        {/* Search */}
+                        <Route path="/Admin/search" element={<Search />} />
 
                         {/* Subject */}
                         <Route path="/Admin/subjects" element={<ShowSubjects />} />

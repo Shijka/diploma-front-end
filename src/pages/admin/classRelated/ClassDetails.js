@@ -49,7 +49,7 @@ const ClassDetails = () => {
     const deleteHandler = (deleteID, address) => {
         console.log(deleteID);
         console.log(address);
-        setMessage("Sorry the delete function has been disabled for now.")
+        setMessage("Уучлаарай, устгах функц одоогоор идэвхгүй байна.")
         setShowPopup(true)
         // dispatch(deleteUser(deleteID, address))
         //     .then(() => {
@@ -60,8 +60,8 @@ const ClassDetails = () => {
     }
 
     const subjectColumns = [
-        { id: 'name', label: 'Subject Name', minWidth: 170 },
-        { id: 'code', label: 'Subject Code', minWidth: 100 },
+        { id: 'name', label: 'Үзлэгийн нэр', minWidth: 170 },
+        { id: 'code', label: 'Үзлэгийн дугаар', minWidth: 100 },
     ]
 
     const subjectRows = subjectsList && subjectsList.length > 0 && subjectsList.map((subject) => {
@@ -75,7 +75,7 @@ const ClassDetails = () => {
     const SubjectsButtonHaver = ({ row }) => {
         return (
             <>
-                <IconButton onClick={() => deleteHandler(row.id, "Subject")}>
+                <IconButton onClick={() => deleteHandler(row.id, "Үзлэг")}>
                     <DeleteIcon color="error" />
                 </IconButton>
                 <BlueButton
@@ -84,7 +84,7 @@ const ClassDetails = () => {
                         navigate(`/Admin/class/subject/${classID}/${row.id}`)
                     }}
                 >
-                    View
+                    Харах
                 </BlueButton >
             </>
         );
@@ -92,11 +92,11 @@ const ClassDetails = () => {
 
     const subjectActions = [
         {
-            icon: <PostAddIcon color="primary" />, name: 'Add New Subject',
+            icon: <PostAddIcon color="primary" />, name: 'Үзлэг нэмэх',
             action: () => navigate("/Admin/addsubject/" + classID)
         },
         {
-            icon: <DeleteIcon color="error" />, name: 'Delete All Subjects',
+            icon: <DeleteIcon color="error" />, name: 'Бүх үзлэгийг устгах',
             action: () => deleteHandler(classID, "SubjectsClass")
         }
     ];
@@ -110,13 +110,13 @@ const ClassDetails = () => {
                             variant="contained"
                             onClick={() => navigate("/Admin/addsubject/" + classID)}
                         >
-                            Add Subjects
+                            Үзлэг нэмэх
                         </GreenButton>
                     </Box>
                     :
                     <>
                         <Typography variant="h5" gutterBottom>
-                            Subjects List:
+                            Үзлэгийн жагсаалт:
                         </Typography>
 
                         <TableTemplate buttonHaver={SubjectsButtonHaver} columns={subjectColumns} rows={subjectRows} />
@@ -128,8 +128,8 @@ const ClassDetails = () => {
     }
 
     const studentColumns = [
-        { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'rollNum', label: 'Roll Number', minWidth: 100 },
+        { id: 'name', label: 'Нэр', minWidth: 170 },
+        { id: 'rollNum', label: 'Оюутны код', minWidth: 100 },
     ]
 
     const studentRows = sclassStudents.map((student) => {
@@ -143,14 +143,14 @@ const ClassDetails = () => {
     const StudentsButtonHaver = ({ row }) => {
         return (
             <>
-                <IconButton onClick={() => deleteHandler(row.id, "Student")}>
+                <IconButton onClick={() => deleteHandler(row.id, "Оюутан")}>
                     <PersonRemoveIcon color="error" />
                 </IconButton>
                 <BlueButton
                     variant="contained"
                     onClick={() => navigate("/Admin/students/student/" + row.id)}
                 >
-                    View
+                    Үзлэг
                 </BlueButton>
                 <PurpleButton
                     variant="contained"
@@ -158,7 +158,7 @@ const ClassDetails = () => {
                         navigate("/Admin/students/student/attendance/" + row.id)
                     }
                 >
-                    Attendance
+                    Ирц
                 </PurpleButton>
             </>
         );
@@ -166,11 +166,11 @@ const ClassDetails = () => {
 
     const studentActions = [
         {
-            icon: <PersonAddAlt1Icon color="primary" />, name: 'Add New Student',
+            icon: <PersonAddAlt1Icon color="primary" />, name: 'Шинэ Оюутан нэмэх',
             action: () => navigate("/Admin/class/addstudents/" + classID)
         },
         {
-            icon: <PersonRemoveIcon color="error" />, name: 'Delete All Students',
+            icon: <PersonRemoveIcon color="error" />, name: 'Бүх оюутнуудыг устгах',
             action: () => deleteHandler(classID, "StudentsClass")
         },
     ];
@@ -185,14 +185,14 @@ const ClassDetails = () => {
                                 variant="contained"
                                 onClick={() => navigate("/Admin/class/addstudents/" + classID)}
                             >
-                                Add Students
+                                Оюутан нэмэх
                             </GreenButton>
                         </Box>
                     </>
                 ) : (
                     <>
                         <Typography variant="h5" gutterBottom>
-                            Students List:
+                            Оюутны жагсаалт:
                         </Typography>
 
                         <TableTemplate buttonHaver={StudentsButtonHaver} columns={studentColumns} rows={studentRows} />
@@ -206,7 +206,7 @@ const ClassDetails = () => {
     const ClassTeachersSection = () => {
         return (
             <>
-                Teachers
+                Багш
             </>
         )
     }
@@ -218,23 +218,23 @@ const ClassDetails = () => {
         return (
             <>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Class Details
+                    Ангийн дэлгэрэнгүй мэдээлэл
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    This is Class {sclassDetails && sclassDetails.sclassName}
+                    Энэ бол анги {sclassDetails && sclassDetails.sclassName}
                 </Typography>
                 <Typography variant="h6" gutterBottom>
-                    Number of Subjects: {numberOfSubjects}
+                    Үзлэгийн тоо: {numberOfSubjects}
                 </Typography>
                 <Typography variant="h6" gutterBottom>
-                    Number of Students: {numberOfStudents}
+                    Оюутны тоо: {numberOfStudents}
                 </Typography>
                 {getresponse &&
                     <GreenButton
                         variant="contained"
                         onClick={() => navigate("/Admin/class/addstudents/" + classID)}
                     >
-                        Add Students
+                        Оюутан нэмэх
                     </GreenButton>
                 }
                 {response &&
@@ -242,7 +242,7 @@ const ClassDetails = () => {
                         variant="contained"
                         onClick={() => navigate("/Admin/addsubject/" + classID)}
                     >
-                        Add Subjects
+                        Үзлэг нэмэх
                     </GreenButton>
                 }
             </>
@@ -259,10 +259,10 @@ const ClassDetails = () => {
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
-                                    <Tab label="Details" value="1" />
-                                    <Tab label="Subjects" value="2" />
-                                    <Tab label="Students" value="3" />
-                                    <Tab label="Teachers" value="4" />
+                                    <Tab label="Дэлгэрэнгүй" value="1" />
+                                    <Tab label="Үзлэг" value="2" />
+                                    <Tab label="Оюутан" value="3" />
+                                    <Tab label="Багш" value="4" />
                                 </TabList>
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>

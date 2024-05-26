@@ -36,7 +36,7 @@ const ShowTeachers = () => {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
                 <GreenButton variant="contained" onClick={() => navigate("/Admin/teachers/chooseclass")}>
-                    Add Teacher
+                    Багш нэмэх
                 </GreenButton>
             </Box>
         );
@@ -56,9 +56,9 @@ const ShowTeachers = () => {
     };
 
     const columns = [
-        { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'teachSubject', label: 'Subject', minWidth: 100 },
-        { id: 'teachSclass', label: 'Class', minWidth: 170 },
+        { id: 'name', label: 'Нэр', minWidth: 170 },
+        { id: 'teachSubject', label: 'Үзлэг', minWidth: 100 },
+        { id: 'teachSclass', label: 'Анги', minWidth: 170 },
     ];
 
     const rows = teachersList.map((teacher) => {
@@ -73,11 +73,11 @@ const ShowTeachers = () => {
 
     const actions = [
         {
-            icon: <PersonAddAlt1Icon color="primary" />, name: 'Add New Teacher',
+            icon: <PersonAddAlt1Icon color="primary" />, name: 'Багш шинээр нэмэх',
             action: () => navigate("/Admin/teachers/chooseclass")
         },
         {
-            icon: <PersonRemoveIcon color="error" />, name: 'Delete All Teachers',
+            icon: <PersonRemoveIcon color="error" />, name: 'Устгах',
             action: () => deleteHandler(currentUser._id, "Teachers")
         },
     ];
@@ -98,7 +98,7 @@ const ShowTeachers = () => {
                                 </StyledTableCell>
                             ))}
                             <StyledTableCell align="center">
-                                Actions
+                                Үйлдлүүд
                             </StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
@@ -120,7 +120,7 @@ const ShowTeachers = () => {
                                                                 onClick={() => {
                                                                     navigate(`/Admin/teachers/choosesubject/${row.teachSclassID}/${row.id}`)
                                                                 }}>
-                                                                Add Subject
+                                                                Үзлэг нэмэх
                                                             </Button>
                                                         )}
                                                     </StyledTableCell>
@@ -138,7 +138,7 @@ const ShowTeachers = () => {
                                             </IconButton>
                                             <BlueButton variant="contained"
                                                 onClick={() => navigate("/Admin/teachers/teacher/" + row.id)}>
-                                                View
+                                                Харах
                                             </BlueButton>
                                         </StyledTableCell>
                                     </StyledTableRow>

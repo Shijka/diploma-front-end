@@ -66,10 +66,10 @@ const AddTeacher = () => {
           <span className="registerTitle">Add Teacher</span>
           <br />
           <label>
-            Subject : {subjectDetails && subjectDetails.subName}
+            Үзлэг : {subjectDetails && subjectDetails.subName}
           </label>
           <label>
-            Class : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
+            Анги : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
           </label>
           <label>Name</label>
           <input className="registerInput" type="text" placeholder="Enter teacher's name..."
@@ -77,13 +77,13 @@ const AddTeacher = () => {
             onChange={(event) => setName(event.target.value)}
             autoComplete="name" required />
 
-          <label>Email</label>
+          <label>Цахим шуудан</label>
           <input className="registerInput" type="email" placeholder="Enter teacher's email..."
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email" required />
 
-          <label>Password</label>
+          <label>Нууц үг</label>
           <input className="registerInput" type="password" placeholder="Enter teacher's password..."
             value={password}
             onChange={(event) => setPassword(event.target.value)}

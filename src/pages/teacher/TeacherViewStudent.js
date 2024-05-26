@@ -1,39 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails } from '../../redux/userRelated/userHandle';
-import { useNavigate, useParams } from 'react-router-dom'
-import { Box, Button, Collapse, Table, TableBody, TableHead, Typography } from '@mui/material';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Box, Button, Collapse, Table, TableBody, TableHead, Typography, TextField } from '@mui/material';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { calculateOverallAttendancePercentage, calculateSubjectAttendancePercentage, groupAttendanceBySubject } from '../../components/attendanceCalculator';
-import CustomPieChart from '../../components/CustomPieChart'
+import CustomPieChart from '../../components/CustomPieChart';
 import { PurpleButton } from '../../components/buttonStyles';
 import { StyledTableCell, StyledTableRow } from '../../components/styles';
 
 const TeacherViewStudent = () => {
-
-    const navigate = useNavigate()
-    const params = useParams()
+    const navigate = useNavigate();
+    const params = useParams();
     const dispatch = useDispatch();
     const { currentUser, userDetails, response, loading, error } = useSelector((state) => state.user);
 
-    const address = "Student"
-    const studentID = params.id
-    const teachSubject = currentUser.teachSubject?.subName
-    const teachSubjectID = currentUser.teachSubject?._id
+    const address = "Student";
+    const studentID = params.id;
+    const teachSubject = currentUser.teachSubject?.subName;
+    const teachSubjectID = currentUser.teachSubject?._id;
 
     useEffect(() => {
         dispatch(getUserDetails(studentID, address));
     }, [dispatch, studentID]);
 
-    if (response) { console.log(response) }
-    else if (error) { console.log(error) }
+    if (response) { console.log(response); }
+    else if (error) { console.log(error); }
 
     const [sclassName, setSclassName] = useState('');
     const [studentSchool, setStudentSchool] = useState('');
     const [subjectMarks, setSubjectMarks] = useState('');
     const [subjectAttendance, setSubjectAttendance] = useState([]);
-
     const [openStates, setOpenStates] = useState({});
+    const [comments, setComments] = useState([]);
+    const [newComment, setNewComment] = useState('');
 
     const handleOpen = (subId) => {
         setOpenStates((prevState) => ({
@@ -55,31 +55,33 @@ const TeacherViewStudent = () => {
     const overallAbsentPercentage = 100 - overallAttendancePercentage;
 
     const chartData = [
-        { name: 'Present', value: overallAttendancePercentage },
-        { name: 'Absent', value: overallAbsentPercentage }
+        { name: 'Ирсэн', value: overallAttendancePercentage },
+        { name: 'Ирээгүй', value: overallAbsentPercentage }
     ];
+
+    const handleAddComment = () => {
+        if (newComment.trim()) {
+            setComments([...comments, newComment]);
+            setNewComment('');
+        }
+    };
 
     return (
         <>
             {loading
-                ?
-                <>
-                    <div>Loading...</div>
-                </>
-                :
-                <div>
-                    Name: {userDetails.name}
+                ? <div>Loading...</div>
+                : <div>
+                    Нэр: {userDetails.name}
                     <br />
-                    Roll Number: {userDetails.rollNum}
+                    Оюутны код: {userDetails.rollNum}
                     <br />
-                    Class: {sclassName.sclassName}
+                    Анги: {sclassName.sclassName}
                     <br />
-                    School: {studentSchool.schoolName}
+                    Сургууль: {studentSchool.schoolName}
                     <br /><br />
 
-                    <h3>Attendance:</h3>
-                    {subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0
-                        &&
+                    <h3>Ирц:</h3>
+                    {subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 &&
                         <>
                             {Object.entries(groupAttendanceBySubject(subjectAttendance)).map(([subName, { present, allData, subId, sessions }], index) => {
                                 if (subName === teachSubject) {
@@ -89,14 +91,13 @@ const TeacherViewStudent = () => {
                                         <Table key={index}>
                                             <TableHead>
                                                 <StyledTableRow>
-                                                    <StyledTableCell>Subject</StyledTableCell>
-                                                    <StyledTableCell>Present</StyledTableCell>
+                                                    <StyledTableCell>Үзлэг</StyledTableCell>
+                                                    <StyledTableCell>Ирсэн</StyledTableCell>
                                                     <StyledTableCell>Total Sessions</StyledTableCell>
-                                                    <StyledTableCell>Attendance Percentage</StyledTableCell>
-                                                    <StyledTableCell align="center">Actions</StyledTableCell>
+                                                    <StyledTableCell>Ирцийн хувь</StyledTableCell>
+                                                    <StyledTableCell align="center">Үйлдлүүд</StyledTableCell>
                                                 </StyledTableRow>
                                             </TableHead>
-
                                             <TableBody>
                                                 <StyledTableRow>
                                                     <StyledTableCell>{subName}</StyledTableCell>
@@ -105,7 +106,7 @@ const TeacherViewStudent = () => {
                                                     <StyledTableCell>{subjectAttendancePercentage}%</StyledTableCell>
                                                     <StyledTableCell align="center">
                                                         <Button variant="contained" onClick={() => handleOpen(subId)}>
-                                                            {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Details
+                                                            {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Дэлгэрэнгүй мэдээлэл
                                                         </Button>
                                                     </StyledTableCell>
                                                 </StyledTableRow>
@@ -114,13 +115,13 @@ const TeacherViewStudent = () => {
                                                         <Collapse in={openStates[subId]} timeout="auto" unmountOnExit>
                                                             <Box sx={{ margin: 1 }}>
                                                                 <Typography variant="h6" gutterBottom component="div">
-                                                                    Attendance Details
+                                                                    Ирцийн дэлгэрэнгүй мэдээлэл
                                                                 </Typography>
                                                                 <Table size="small" aria-label="purchases">
                                                                     <TableHead>
                                                                         <StyledTableRow>
                                                                             <StyledTableCell>Date</StyledTableCell>
-                                                                            <StyledTableCell align="right">Status</StyledTableCell>
+                                                                            <StyledTableCell align="right">Статус</StyledTableCell>
                                                                         </StyledTableRow>
                                                                     </TableHead>
                                                                     <TableBody>
@@ -145,13 +146,12 @@ const TeacherViewStudent = () => {
                                             </TableBody>
                                         </Table>
                                     )
-                                }
-                                else {
-                                    return null
+                                } else {
+                                    return null;
                                 }
                             })}
                             <div>
-                                Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
+                                Нийт ирцийн хувь: {overallAttendancePercentage.toFixed(2)}%
                             </div>
 
                             <CustomPieChart data={chartData} />
@@ -166,7 +166,7 @@ const TeacherViewStudent = () => {
                             )
                         }
                     >
-                        Add Attendance
+                        Ирц нэмэх
                     </Button>
                     <br /><br /><br />
                     <h3>Subject Marks:</h3>
@@ -179,8 +179,8 @@ const TeacherViewStudent = () => {
                                         <Table key={index}>
                                             <TableHead>
                                                 <StyledTableRow>
-                                                    <StyledTableCell>Subject</StyledTableCell>
-                                                    <StyledTableCell>Marks</StyledTableCell>
+                                                    <StyledTableCell>Үзлэг</StyledTableCell>
+                                                    <StyledTableCell>Оноо</StyledTableCell>
                                                 </StyledTableRow>
                                             </TableHead>
                                             <TableBody>
@@ -191,11 +191,10 @@ const TeacherViewStudent = () => {
                                             </TableBody>
                                         </Table>
                                     )
-                                }
-                                else if (!result.subName || !result.marksObtained) {
+                                } else if (!result.subName || !result.marksObtained) {
                                     return null;
                                 }
-                                return null
+                                return null;
                             })}
                         </>
                     }
@@ -204,13 +203,39 @@ const TeacherViewStudent = () => {
                             navigate(
                                 `/Teacher/class/student/marks/${studentID}/${teachSubjectID}`
                             )}>
-                        Add Marks
+                        Үнэлгээ өгөх
                     </PurpleButton>
                     <br /><br /><br />
+
+                    <h3>Сэтгэгдэл:</h3>
+                    <Box>
+                        {comments.map((comment, index) => (
+                            <Box key={index} mb={2} p={2} border={1} borderRadius={1}>
+                                <Typography>{comment}</Typography>
+                            </Box>
+                        ))}
+                    </Box>
+                    <Box mt={2}>
+                        <TextField
+                            fullWidth
+                            label="Сэтгэгдэл нэмнэ үү"
+                            variant="outlined"
+                            value={newComment}
+                            onChange={(e) => setNewComment(e.target.value)}
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleAddComment}
+                            sx={{ mt: 2 }}
+                        >
+                            Нийтлэх
+                        </Button>
+                    </Box>
                 </div>
             }
         </>
-    )
-}
+    );
+};
 
-export default TeacherViewStudent
+export default TeacherViewStudent;

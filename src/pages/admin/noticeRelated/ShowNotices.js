@@ -63,11 +63,11 @@ const ShowNotices = () => {
 
     const actions = [
         {
-            icon: <NoteAddIcon color="primary" />, name: 'Add New Notice',
+            icon: <NoteAddIcon color="primary" />, name: 'Мэдэгдэл нэмэх',
             action: () => navigate("/Admin/addnotice")
         },
         {
-            icon: <DeleteIcon color="error" />, name: 'Delete All Notices',
+            icon: <DeleteIcon color="error" />, name: 'Бүх мэдэгдлийг устгах',
             action: () => deleteHandler(currentUser._id, "Notices")
         }
     ];

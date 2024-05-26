@@ -147,15 +147,15 @@ const ViewStudent = () => {
         const renderTableSection = () => {
             return (
                 <>
-                    <h3>Attendance:</h3>
+                    <h3>Ирц:</h3>
                     <Table>
                         <TableHead>
                             <StyledTableRow>
-                                <StyledTableCell>Subject</StyledTableCell>
-                                <StyledTableCell>Present</StyledTableCell>
-                                <StyledTableCell>Total Sessions</StyledTableCell>
-                                <StyledTableCell>Attendance Percentage</StyledTableCell>
-                                <StyledTableCell align="center">Actions</StyledTableCell>
+                                <StyledTableCell>Үзлэг</StyledTableCell>
+                                <StyledTableCell>Ирсэн</StyledTableCell>
+                                <StyledTableCell>Нийт зөвөлгөөн</StyledTableCell>
+                                <StyledTableCell>Ирцийн хувь</StyledTableCell>
+                                <StyledTableCell align="center">Үйлдлүүд</StyledTableCell>
                             </StyledTableRow>
                         </TableHead>
                         {Object.entries(groupAttendanceBySubject(subjectAttendance)).map(([subName, { present, allData, subId, sessions }], index) => {
@@ -170,14 +170,14 @@ const ViewStudent = () => {
                                         <StyledTableCell align="center">
                                             <Button variant="contained"
                                                 onClick={() => handleOpen(subId)}>
-                                                {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Details
+                                                {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Дэлгэрэнгүй
                                             </Button>
                                             <IconButton onClick={() => removeSubAttendance(subId)}>
                                                 <DeleteIcon color="error" />
                                             </IconButton>
                                             <Button variant="contained" sx={styles.attendanceButton}
                                                 onClick={() => navigate(`/Admin/subject/student/attendance/${studentID}/${subId}`)}>
-                                                Change
+                                                Өөрчлөх
                                             </Button>
                                         </StyledTableCell>
                                     </StyledTableRow>
@@ -186,13 +186,13 @@ const ViewStudent = () => {
                                             <Collapse in={openStates[subId]} timeout="auto" unmountOnExit>
                                                 <Box sx={{ margin: 1 }}>
                                                     <Typography variant="h6" gutterBottom component="div">
-                                                        Attendance Details
+                                                        Ирцийн дэлгэрэнгүй мэдээлэл
                                                     </Typography>
                                                     <Table size="small" aria-label="purchases">
                                                         <TableHead>
                                                             <StyledTableRow>
-                                                                <StyledTableCell>Date</StyledTableCell>
-                                                                <StyledTableCell align="right">Status</StyledTableCell>
+                                                                <StyledTableCell>Оноо</StyledTableCell>
+                                                                <StyledTableCell align="right">Статус</StyledTableCell>
                                                             </StyledTableRow>
                                                         </TableHead>
                                                         <TableBody>
@@ -220,11 +220,11 @@ const ViewStudent = () => {
                         )}
                     </Table>
                     <div>
-                        Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
+                        Нийт ирцийн хувь: {overallAttendancePercentage.toFixed(2)}%
                     </div>
-                    <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => removeHandler(studentID, "RemoveStudentAtten")}>Delete All</Button>
+                    <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => removeHandler(studentID, "RemoveStudentAtten")}>Устгах</Button>
                     <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
-                        Add Attendance
+                        Ирц нэмэх
                     </Button>
                 </>
             )
@@ -247,12 +247,12 @@ const ViewStudent = () => {
                         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                             <BottomNavigation value={selectedSection} onChange={handleSectionChange} showLabels>
                                 <BottomNavigationAction
-                                    label="Table"
+                                    label="Хүснэгт"
                                     value="table"
                                     icon={selectedSection === 'table' ? <TableChartIcon /> : <TableChartOutlinedIcon />}
                                 />
                                 <BottomNavigationAction
-                                    label="Chart"
+                                    label="Диаграм"
                                     value="chart"
                                     icon={selectedSection === 'chart' ? <InsertChartIcon /> : <InsertChartOutlinedIcon />}
                                 />
@@ -261,7 +261,7 @@ const ViewStudent = () => {
                     </>
                     :
                     <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
-                        Add Attendance
+                        Ирц нэмэх
                     </Button>
                 }
             </>
@@ -272,12 +272,12 @@ const ViewStudent = () => {
         const renderTableSection = () => {
             return (
                 <>
-                    <h3>Subject Marks:</h3>
+                    <h3>Үзлэгийн үнэлгээ:</h3>
                     <Table>
                         <TableHead>
                             <StyledTableRow>
-                                <StyledTableCell>Subject</StyledTableCell>
-                                <StyledTableCell>Marks</StyledTableCell>
+                                <StyledTableCell>Үзлэг</StyledTableCell>
+                                <StyledTableCell>Үнэлгээ</StyledTableCell>
                             </StyledTableRow>
                         </TableHead>
                         <TableBody>
@@ -295,7 +295,7 @@ const ViewStudent = () => {
                         </TableBody>
                     </Table>
                     <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/marks/" + studentID)}>
-                        Add Marks
+                        Оноо нэмэх
                     </Button>
                 </>
             )
@@ -318,12 +318,12 @@ const ViewStudent = () => {
                         <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
                             <BottomNavigation value={selectedSection} onChange={handleSectionChange} showLabels>
                                 <BottomNavigationAction
-                                    label="Table"
+                                    label="Хүснэгт"
                                     value="table"
                                     icon={selectedSection === 'table' ? <TableChartIcon /> : <TableChartOutlinedIcon />}
                                 />
                                 <BottomNavigationAction
-                                    label="Chart"
+                                    label="Диаграм"
                                     value="chart"
                                     icon={selectedSection === 'chart' ? <InsertChartIcon /> : <InsertChartOutlinedIcon />}
                                 />
@@ -332,7 +332,7 @@ const ViewStudent = () => {
                     </>
                     :
                     <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/marks/" + studentID)}>
-                        Add Marks
+                        Үнэлгээ нэмэх
                     </Button>
                 }
             </>
@@ -342,20 +342,20 @@ const ViewStudent = () => {
     const StudentDetailsSection = () => {
         return (
             <div>
-                Name: {userDetails.name}
+                Нэр: {userDetails.name}
                 <br />
-                Roll Number: {userDetails.rollNum}
+                Оюутны код: {userDetails.rollNum}
                 <br />
-                Class: {sclassName.sclassName}
+                Анги: {sclassName.sclassName}
                 <br />
-                School: {studentSchool.schoolName}
+                Сургууль: {studentSchool.schoolName}
                 {
                     subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 && (
                         <CustomPieChart data={chartData} />
                     )
                 }
                 <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
-                    Delete
+                    Устгах
                 </Button>
                 <br />
                 {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
@@ -409,9 +409,9 @@ const ViewStudent = () => {
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
-                                    <Tab label="Details" value="1" />
-                                    <Tab label="Attendance" value="2" />
-                                    <Tab label="Marks" value="3" />
+                                    <Tab label="Дэлгэрэнгүй" value="1" />
+                                    <Tab label="Ирц" value="2" />
+                                    <Tab label="Оноо" value="3" />
                                 </TabList>
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>

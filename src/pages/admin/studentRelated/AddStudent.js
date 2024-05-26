@@ -58,7 +58,7 @@ const AddStudent = ({ situation }) => {
     const submitHandler = (event) => {
         event.preventDefault()
         if (sclassName === "") {
-            setMessage("Please select a classname")
+            setMessage("Ангийн нэр сонгоно уу")
             setShowPopup(true)
         }
         else {
@@ -88,9 +88,9 @@ const AddStudent = ({ situation }) => {
         <>
             <div className="register">
                 <form className="registerForm" onSubmit={submitHandler}>
-                    <span className="registerTitle">Add Student</span>
-                    <label>Name</label>
-                    <input className="registerInput" type="text" placeholder="Enter student's name..."
+                    <span className="registerTitle">Оюутан нэмэх</span>
+                    <label>Нэр</label>
+                    <input className="registerInput" type="text" placeholder="Оюутны нэрийг оруулна уу..."
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                         autoComplete="name" required />
@@ -98,12 +98,12 @@ const AddStudent = ({ situation }) => {
                     {
                         situation === "Student" &&
                         <>
-                            <label>Class</label>
+                            <label>Анги</label>
                             <select
                                 className="registerInput"
                                 value={className}
                                 onChange={changeHandler} required>
-                                <option value='Select Class'>Select Class</option>
+                                <option value='Select Class'>Анги сонгоно уу</option>
                                 {sclassesList.map((classItem, index) => (
                                     <option key={index} value={classItem.sclassName}>
                                         {classItem.sclassName}
@@ -113,14 +113,14 @@ const AddStudent = ({ situation }) => {
                         </>
                     }
 
-                    <label>Roll Number</label>
-                    <input className="registerInput" type="number" placeholder="Enter student's Roll Number..."
+                    <label>Оюутны код</label>
+                    <input className="registerInput" type="number" placeholder="Оюутны кодыг оруулна уу..."
                         value={rollNum}
                         onChange={(event) => setRollNum(event.target.value)}
                         required />
 
-                    <label>Password</label>
-                    <input className="registerInput" type="password" placeholder="Enter student's password..."
+                    <label>Нууц үг</label>
+                    <input className="registerInput" type="password" placeholder="Оюутны нууц үгээ оруулна уу..."
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                         autoComplete="new-password" required />

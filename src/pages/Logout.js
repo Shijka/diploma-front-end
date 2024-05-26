@@ -22,9 +22,9 @@ const Logout = () => {
     return (
         <LogoutContainer>
             <h1>{currentUser.name}</h1>
-            <LogoutMessage>Are you sure you want to log out?</LogoutMessage>
-            <LogoutButtonLogout onClick={handleLogout}>Log Out</LogoutButtonLogout>
-            <LogoutButtonCancel onClick={handleCancel}>Cancel</LogoutButtonCancel>
+            <LogoutMessage>Та гарахдаа итгэлтэй байна уу?</LogoutMessage>
+            <LogoutButtonLogout onClick={handleLogout}>Гарах</LogoutButtonLogout>
+            <LogoutButtonCancel onClick={handleCancel}>Цуцлах</LogoutButtonCancel>
         </LogoutContainer>
     );
 };
@@ -34,20 +34,20 @@ export default Logout;
 const LogoutContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 10px;
-  padding: 20px;
+  padding: 150px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-  background-color: #85769f66;
+  background-color: #fff;
   color: black;
 `;
 
 const LogoutMessage = styled.p`
   margin-bottom: 20px;
   font-size: 16px;
-  text-align: center;
+  text-align: center; 
 `;
 
 const LogoutButton = styled.button`
@@ -60,14 +60,14 @@ const LogoutButton = styled.button`
 
   &:hover {
     color: #fff;
-    background-color: #333;
+    background-color: #000;
   }
 `;
 
 const LogoutButtonLogout = styled(LogoutButton)`
-  background-color: #ea0606;
+  background-color: #800000 ;
 `;
 
 const LogoutButtonCancel = styled(LogoutButton)`
-  background-color: rgb(99, 60, 99);
+  background-color: #333;
 `;

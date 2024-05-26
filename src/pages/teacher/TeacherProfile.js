@@ -17,11 +17,11 @@ const TeacherProfile = () => {
     <>
       <ProfileCard>
         <ProfileCardContent>
-          <ProfileText>Name: {currentUser.name}</ProfileText>
-          <ProfileText>Email: {currentUser.email}</ProfileText>
-          <ProfileText>Class: {teachSclass.sclassName}</ProfileText>
-          <ProfileText>Subject: {teachSubject.subName}</ProfileText>
-          <ProfileText>School: {teachSchool.schoolName}</ProfileText>
+          <ProfileText>Нэр: {currentUser.name}</ProfileText>
+          <ProfileText>Цахим шуудан: {currentUser.email}</ProfileText>
+          <ProfileText>Анги: {teachSclass.sclassName}</ProfileText>
+          <ProfileText>Үзлэг: {teachSubject.subName}</ProfileText>
+          <ProfileText>Сургууль: {teachSchool.schoolName}</ProfileText>
         </ProfileCardContent>
       </ProfileCard>
     </>

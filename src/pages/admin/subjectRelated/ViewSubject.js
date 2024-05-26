@@ -103,14 +103,14 @@ const ViewSubject = () => {
                 variant="contained"
                 onClick={() => navigate("/Admin/class/addstudents/" + classID)}
               >
-                Add Students
+                Оюутан нэмэх
               </GreenButton>
             </Box>
           </>
         ) : (
           <>
             <Typography variant="h5" gutterBottom>
-              Students List:
+              Оюутны жагсаалт:
             </Typography>
 
             {selectedSection === 'attendance' &&
@@ -123,12 +123,12 @@ const ViewSubject = () => {
             <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
               <BottomNavigation value={selectedSection} onChange={handleSectionChange} showLabels>
                 <BottomNavigationAction
-                  label="Attendance"
+                  label="Ирц"
                   value="attendance"
                   icon={selectedSection === 'attendance' ? <TableChartIcon /> : <TableChartOutlinedIcon />}
                 />
                 <BottomNavigationAction
-                  label="Marks"
+                  label="Үнэлгээ"
                   value="marks"
                   icon={selectedSection === 'marks' ? <InsertChartIcon /> : <InsertChartOutlinedIcon />}
                 />
@@ -147,31 +147,31 @@ const ViewSubject = () => {
     return (
       <>
         <Typography variant="h4" align="center" gutterBottom>
-          Subject Details
+          Үзлэгийн дэлгэрэнгүй мэдээлэл
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Subject Name : {subjectDetails && subjectDetails.subName}
+          Үзлэгийн нэр : {subjectDetails && subjectDetails.subName}
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Subject Code : {subjectDetails && subjectDetails.subCode}
+          Үзлэгийн код : {subjectDetails && subjectDetails.subCode}
         </Typography>
         <Typography variant="h6" gutterBottom>
           Subject Sessions : {subjectDetails && subjectDetails.sessions}
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Number of Students: {numberOfStudents}
+          Оюутны тоо: {numberOfStudents}
         </Typography>
         <Typography variant="h6" gutterBottom>
-          Class Name : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
+          Ангийн нэр : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
         </Typography>
         {subjectDetails && subjectDetails.teacher ?
           <Typography variant="h6" gutterBottom>
-            Teacher Name : {subjectDetails.teacher.name}
+            Багшийн нэр : {subjectDetails.teacher.name}
           </Typography>
           :
           <GreenButton variant="contained"
             onClick={() => navigate("/Admin/teachers/addteacher/" + subjectDetails._id)}>
-            Add Subject Teacher
+            Удирдагч багш нэмнэ үү
           </GreenButton>
         }
       </>

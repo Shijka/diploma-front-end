@@ -15,11 +15,13 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import StudentHomePage from './StudentHomePage';
 import StudentProfile from './StudentProfile';
 import StudentSubjects from './StudentSubjects';
+import StudentReview from './StudentReview';
 import ViewStdAttendance from './ViewStdAttendance';
 import StudentComplain from './StudentComplain';
 import Logout from '../Logout'
 import AccountMenu from '../../components/AccountMenu';
 import { AppBar, Drawer } from '../../components/styles';
+import StudentSearch from './StudentSearch';
 
 const StudentDashboard = () => {
     const [open, setOpen] = useState(true);
@@ -52,7 +54,7 @@ const StudentDashboard = () => {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Student Dashboard
+                            Оюутан
                         </Typography>
                         <AccountMenu />
                     </Toolbar>
@@ -74,8 +76,10 @@ const StudentDashboard = () => {
                         <Route path="/" element={<StudentHomePage />} />
                         <Route path='*' element={<Navigate to="/" />} />
                         <Route path="/Student/dashboard" element={<StudentHomePage />} />
+                        <Route path="/Student/search" element={<StudentSearch />} />
                         <Route path="/Student/profile" element={<StudentProfile />} />
-
+                        
+                        <Route path="/Student/review" element={<StudentReview />} />
                         <Route path="/Student/subjects" element={<StudentSubjects />} />
                         <Route path="/Student/attendance" element={<ViewStdAttendance />} />
                         <Route path="/Student/complain" element={<StudentComplain />} />
