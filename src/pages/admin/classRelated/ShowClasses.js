@@ -137,7 +137,7 @@ const ShowClasses = () => {
       action: () => navigate("/Admin/addclass")
     },
     {
-      icon: <DeleteIcon color="error" />, name: 'Бшх ангийг устгах',
+      icon: <DeleteIcon color="error" />, name: 'Бүх ангийг устгах',
       action: () => deleteHandler(adminID, "Sclasses")
     },
   ];
@@ -151,7 +151,7 @@ const ShowClasses = () => {
           {getresponse ?
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
               <GreenButton variant="contained" onClick={() => navigate("/Admin/addclass")}>
-                Add Class
+                Анги үүсгэх
               </GreenButton>
             </Box>
             :

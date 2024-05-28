@@ -129,7 +129,7 @@ const AddStudent = ({ situation }) => {
                         {loader ? (
                             <CircularProgress size={24} color="inherit" />
                         ) : (
-                            'Add'
+                            'Нэмэх'
                         )}
                     </button>
                 </form>
